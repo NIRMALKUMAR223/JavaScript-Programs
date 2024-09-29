@@ -3,4 +3,3 @@
 // 1 is compare with 3 1<3 this is also true 
 
 console.log(1<2<3);
-
