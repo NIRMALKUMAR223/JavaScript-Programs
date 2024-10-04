@@ -6,7 +6,9 @@ const counted = new Set();
 for (let i=0; i<arr.length; i++){
     let count=0;
     for (let j=0; j<arr.length; j++){
-        if (!counted.has(arr[i])){
+        // it return false we intensely make it true 
+        // if it is true that element is already counted  so no need to count it again 
+        if (!counted.has(arr[i])){  
             if(arr[i]==arr[j]){
                 count++;
             }
@@ -17,5 +19,5 @@ for (let i=0; i<arr.length; i++){
         console.log(arr[i] + " : "+count);
         counted.add(arr[i]);
     }
-    
+
 }
