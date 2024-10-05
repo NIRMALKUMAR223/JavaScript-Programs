@@ -2,7 +2,6 @@
 
 const letter = ['w','a','b','h','a','y','z','a'];
 const count = {};
-
 letter.forEach((item)=>{
     if (count[item]){
         count[item]+=1;
@@ -11,5 +10,4 @@ letter.forEach((item)=>{
         count[item]=1;
     }
 })
-
 console.log(count);
