@@ -1,7 +1,7 @@
 // JavaScript Program to Check Prime Number
 
 
-function isPrime(num){
+function isPrime(number){
     if (number <= 1){
         return false;
     }
@@ -14,7 +14,7 @@ function isPrime(num){
     return true;
 }
 
-const number = 12;
+const number = 11;
 if (isPrime(number)){
     console.log("Prime");
 }
