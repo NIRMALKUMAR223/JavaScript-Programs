@@ -1,0 +1,148 @@
+operator
+-----------> symbol which is used to perform some task
+
+---> arathimetic operator 
+        +,-,%,/,*,++,--
+
+---> relation operator
+        >,>=,<,<=,==,===,!=,!==
+
+---> logical operator
+        &&, ||, !
+
+---> bitwise operator
+        &, |, ~
+
+---> assignment operator
+        +=, -=, *=, /=, =, 
+
+---> ternary operator
+        condition? true : false
+
+
+== and !=
+----> double equal is used to compare only the value not the data type
+
+=== and !==
+----> === is used to compare value as well as data type
+
+note : 
+---->  == and === both will return boolean value
+
+operator and datatype
+
+
+${} --- doller expression  backtick  ``
+
+undefined + number = NaN
+NaN = not a number (return type of NaN is number);
+
+----> Types Of Function
+
+----> named function.
+    function function_name(){
+
+    }
+
+----> function expression. // conditional rendering
+    lhs  =  rhs;
+
+----> anonymous function.
+    const add = function (number){
+
+    }
+
+----> arrow function.
+    ES6 => fat arrow 
+    ()=>{
+
+    }
+
+----> immidiate invoked function expression (IIFE).
+----> higher order function.
+----> callback function.
+
+Function():
+
+=> Function is a block of code which is used to do some specific task.
+=> We can write any bussniess with in that function block.
+=> To excute that function we have to triger it by calling the function using function name.
+=> In javascript function are created in many ways.
+
+    * named function.
+    * function expression. // conditional rendering
+    * anonymous function.
+    * arrow function.
+    * immidiate invoked function expression (IIFE).
+    * higher order function.
+    * callback function.
+
+=>Named function.
+
+    * To create a named function we have to function keyword along with the identifier, 
+      and paranthsis for the parameter with a block {}.
+    
+    example:
+        function print(){
+            console.log('i am function');
+        }
+        print();
+
+        function fullName(first, last){
+            return 'hello ' + first +' '+ last;
+        }
+        fullName('nirmal', 'kumar');
+
+=>Function expression. // conditional rendering
+
+    * In javascript function can be stored in an variable.
+    * Storing a function in an variable is known as function expression.
+
+    example:
+        var add = function(a,b){
+            console.log(a+b);
+        }
+
+        add(10,20);
+
+=>Anonymous function.
+
+    * In javascript we can create anonymous function with out using identifier.
+    * But we have to store that in an variable.
+
+    example:
+        var add = function(a,b){
+            console.log(a+b);
+        }
+
+        add(10,20);
+
+=>Arrow function.
+
+    * In javascript arrow function was introduced in ES6 feature.
+    * We don't have to use function keyword. 
+    * We don't have to use identifier.
+    * To create arrow function we have to use paranthsis for parameters along with fat (=>) arrow.
+    * If there is only one parameter then paranthsis is not manitory. 
+    * If there is only one statment clever {} braces is not manitory.
+    * If there is only one return statment then clever braces and return keyword is not manitory. 
+    * If we are using return keyword explicity the we have to clever {} braces.
+
+    Note:
+
+        * Arrow function should be stored in a variable.
+    
+    example:
+
+        // Two parameter
+            const add = (a,b) => {
+                return a+b;
+            }
+        
+        // zero parameter
+            const print = () => {
+                return 'welcome';
+            } 
+        
+        // one parameter 
+            const user = () => user;
