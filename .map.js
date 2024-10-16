@@ -13,10 +13,11 @@ const obj = [
     },
 ]
 
+// map is used to modify the existing data it return new modified data we have to store it
+
 const totalPriceOfEachItem = obj.map(( item, index, arr)=>{
     return item.price * item.total;
 });
 
 console.log(totalPriceOfEachItem);
 
-// map is used to modify the existing data it return new modified data we have to store it
