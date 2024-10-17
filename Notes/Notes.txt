@@ -146,3 +146,181 @@ Function():
         
         // one parameter 
             const user = () => user;
+
+=>immidiate invoked function expression (IIFE).
+
+    * Such type of function which is called immidiately after creating it.
+    * This types of function excute only for one time .
+    * In order to create an IIFE we have to wrap the function inside the paranthsis and we can call that function 
+      by giving another paranthsis.
+
+    example:
+
+        (function xyz(){
+            console.log('hello world');
+        })();
+
+        (()=>{
+            console.log("helloworld);
+        })();
+
+        ((name)=>{
+            console.log(`my name is ${name});
+        })('Nirmal Kumar);
+
+=>higher order function.
+
+    * Those function which accept another as its argument is known as higher order function.
+    * We have to specify the perticular parameter is accepting a function by calling  it inside the function scope.
+    * Higher order function return an another function.
+    * It is generally used in such cases where the code is reusable .
+
+    example:
+
+        // 1
+
+        var fun = (user, password, a)=>{
+            user(a);
+            password();
+        }
+
+        fun ( (a)=>{
+            console.log(a+ ' i am user');
+        }, ()=>{
+            console.log('i am password')
+        });
+        
+        // 2
+
+        var calc = (operator, number1, number2)=>{
+            operator(number1, number2);
+        }
+
+        calc((num1, num2)=>{
+            console.log(num1! + num2);
+        }, 10, 20);
+
+
+=>callback function
+    
+    * The function which is passed as a parameter inside the higher order function is known as callback function.
+
+
+=>Nested function
+    
+    * Function inside a function is known as Nested function
+
+    example: 
+
+    var nest = ()=>{
+        console.log('i am parent function');
+
+        var child = ()=>{
+            console.log('i am child function');
+
+            var grandChild = ()=>{
+                console.log('i am grand child');
+            }
+            grandChild();
+        }
+        child();
+    }
+
+    nest();
+
+=>Closure
+
+    * Closure was introduced in ES6 version.
+    * Closure is nothing but the temperory storage where all the data member of a function is temperory stored.
+    * If the child function wants to access the data member they can access by using Closure.
+    * It is function where the logic for storing the data member of the function is temperory is written.
+
+
+
+    ---------------variable phase-------------------
+    fullName = {
+
+    }
+
+    ---------------execution phase------------------
+    log fullName
+    fullName() 
+                        -------------------new execution context for fullName created--------------
+                        
+                        -------------------variable phase----------------------
+                        
+                        fname = {
+
+                        }
+                        lname = {
+
+                        }
+
+                        --------------------execution phase--------------------
+
+                        log fname
+                        log lname
+
+
+///////////   first code
+
+console.log('start')
+
+var a = 50;
+var b = 20;
+
+function abc(){
+    return a+b;
+}
+
+console.log(abc());
+console.log('hello');
+
+function first(){
+    var c = a;
+    console.log(c);
+}
+
+first();
+console.log('end')
+
+
+////////// second code
+
+function parent(a,b){
+    
+    var c = 50;
+    
+    function child(){
+        console.log(c+10);
+        var d = 100;
+        console.log(d+c);
+    }
+
+    var e = 200;
+    
+    child();
+} 
+
+parent(10, 5);
+console.log('bye bye');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
