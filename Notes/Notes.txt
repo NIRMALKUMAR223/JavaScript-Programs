@@ -237,31 +237,7 @@ Function():
 
 
 
-    ---------------variable phase-------------------
-    fullName = {
-
-    }
-
-    ---------------execution phase------------------
-    log fullName
-    fullName() 
-                        -------------------new execution context for fullName created--------------
-                        
-                        -------------------variable phase----------------------
-                        
-                        fname = {
-
-                        }
-                        lname = {
-
-                        }
-
-                        --------------------execution phase--------------------
-
-                        log fname
-                        log lname
-
-
+  
 ///////////   first code
 
 console.log('start')
@@ -306,7 +282,20 @@ parent(10, 5);
 console.log('bye bye');
 
 
+=>Execution context
 
+    * Every time an javascript file is created for that js file 
+    * One execution context is created that is known as global execution context 
+    * For every execution context there are two phases
+        ----->variable phase
+        ----->execution phase
+    
+    * variable phase and execution phase
+        
+        =>In the variable phase are stored in the heap memory  with the default value undefined.
+        =>In the execution phase all the variables get their values and all the executed line get executed.
+        =>whenever there is a function , we need to call that function in order to execute it.
+        =>whenever the function calling statment is their for that function new execution context is created along with the variable phase and execution phase.
 
 
 
