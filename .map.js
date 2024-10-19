@@ -20,4 +20,3 @@ const totalPriceOfEachItem = obj.map(( item, index, arr)=>{
 });
 
 console.log(totalPriceOfEachItem);
-
