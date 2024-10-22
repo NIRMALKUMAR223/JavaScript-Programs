@@ -281,7 +281,6 @@ function parent(a,b){
 parent(10, 5);
 console.log('bye bye');
 
-
 =>Execution context
 
     * Every time an javascript file is created for that js file 
@@ -297,19 +296,57 @@ console.log('bye bye');
         =>whenever there is a function , we need to call that function in order to execute it.
         =>whenever the function calling statment is their for that function new execution context is created along with the variable phase and execution phase.
 
+=>Array
+    
+    * Array is collection of data 
+    * Unlike normal variable array variable is able to store multiple data at the same time
+    * In javascript arrays are heterogeneous 
 
+    Syntax:
 
+        => Literal way
+            
+            const arr = [1,2,3,4,5,6,7,8,9,10];
+            const other = []; // empty array
 
+        => Using new keyword
+        
+            const otherWay = new Array();
+            const anotherWay = new Array(5);
 
+        =>Adding element to an array
 
+            arr[0] = value;
+            arr[1] = value;
+            arr[2] = value;
+            arr[3] = value;
+            arr[4] = value;
 
+    Note:
 
+        If we are adding less number of elements than the length of the array then it create hole in the array
+        To avoid the holes in the array we have to enter data in all the indexes and more
 
+    Fetching element in array:
 
+        var user = [1,2,3,4,5,6,7,8,9,10];
+        
+        // using for loop
 
+            for (let i = 0; i < user.length; i++ ){
+                console.log(user[i]);
+            }
 
+        // using while loop
 
+            index = 0;
+            while (index < user.length){
+                console.log(user[index]);
+                index++;
+            }
 
+        // using forEach
 
-
-
+            user.forEach( (item)=>{
+                console.log(item)
+            });
