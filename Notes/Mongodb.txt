@@ -1,0 +1,95 @@
+scalable - means size / large amount of data
+mongo duplicate is  also allowed
+
+A - it will responsible for entire transaction(failure)
+C - 5000 not more or not less how much data is required that much will be provided
+I - other document are distrubing or not
+D - once done transaction it update data is refelect in the Database
+
+
+
+    sql                                 vs                              Nosql
+
+It is RDBMS                                            It is Distributed Database or Nosql Database or Non-relationaldatabase
+
+sql has Fixed schema or static schema                  It has Dynamic schema or schema less
+
+It is suitable for complex queries                     It is not suitable for complex queries
+
+sql supports ACID properties                           No-sql doesn't supports ACID properties
+
+sql is vertically scalable                             No-sql is horizontal scalable
+
+example:                                               example:
+    mysql, oracle, sqllite, mssql etc                       mongo db, dynamo db, Hbase, couch db, redis etc
+
+
+
+
+Nosql is a type of database management system (DBMS) that is designed to handle and store large 
+volume of unstructured and semi-structed data.
+
+
+
+Nosql database are generally calssified into four main categories:
+
+Document Database:
+    A document database stores data in json, bson, or XML document. 
+    Document in the database can be nested.
+    Document database are mongo db, apache, couch db.
+
+Key-value stores:
+    This is the  simplest type of Nosql database . 
+    Every element stored in key value pair consisting of an attributes name ('key') and value.
+    key-value database are amazon, redis, memecached, dinamodb.
+
+column-family store / wide-column store:
+    while an RDBMS stores data in row and reads it row and reads it row by row, 
+    column-oriented database are organized as a set of columns.
+    wide-column database are cassandra, H-base.
+
+Graph database:
+    A Graph database focuses on the relationship between data element . 
+    Each element is contained as a node. the connections between element in the database are called links or relationship. 
+    Graph database are Neo4j.
+
+
+ACID properties in DBMS
+
+Atomicity:
+    The entire transaction take place at once or doesn't happen at all.
+
+Consistency:
+    The database must be consistent before and after the transaction.
+
+Isolation:
+    Multiple transaction occur independently without interference.
+
+Durability:
+    The changes of a successful transaction occur even is the system failure occur.
+
+
+what is json ? 
+    JSON stands for javascript object notation.
+    JSON is a open source data-interchange format.
+    JSON is lightweight and self-describing.
+    JSON oriented from javascript.
+    JSON is easy to write.
+    JSON is language independent.
+    JSON supports data structures such as array and object.
+
+
+mongodb community version
+mongo shell download
+
+c drive program files mongodb server 7.0 bin  copy path
+edit environment
+variable new ---- paste
+system variable ---- paste
+
+
+bin path 
+
+
+cmd mongosh
+https://docs.mongodb.com/mongodb-shell/
