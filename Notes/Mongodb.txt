@@ -6,7 +6,11 @@ C - 5000 not more or not less how much data is required that much will be provid
 I - other document are distrubing or not
 D - once done transaction it update data is refelect in the Database
 
+founders of mongodb
 
+eliot horrowitz
+kevin rayan
+delight marryman
 
     sql                                 vs                              Nosql
 
@@ -79,17 +83,3 @@ what is json ?
     JSON supports data structures such as array and object.
 
 
-mongodb community version
-mongo shell download
-
-c drive program files mongodb server 7.0 bin  copy path
-edit environment
-variable new ---- paste
-system variable ---- paste
-
-
-bin path 
-
-
-cmd mongosh
-https://docs.mongodb.com/mongodb-shell/
