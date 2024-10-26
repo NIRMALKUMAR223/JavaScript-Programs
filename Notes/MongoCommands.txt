@@ -14,3 +14,7 @@ db.collection.insertMany() - it is used to insert many document at the same time
 
 db.collection.findOne() - it is used to find an document if we didn't pass any consition we will get first document.
 
+db.CreateCollection('Database Name', {capped:true, max:3, size:10000} )
+- it is cued to create an collection with specified size
+- if we want to restict the size of collection we use capped collection 
+
