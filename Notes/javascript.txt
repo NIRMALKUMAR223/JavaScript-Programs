@@ -350,3 +350,174 @@ console.log('bye bye');
             user.forEach( (item)=>{
                 console.log(item)
             });
+
+=>Array Methods
+    push()
+    pop()
+    shift()
+    unshift()
+    reverse()
+    split()
+    slice()
+    splice()
+    substr()
+    forEach()
+    filter()
+    map()
+    includes()
+    Every()
+    Sum()
+
+
+=>Slice 
+
+    * Slice is an array Method which is used to slice or cut out a part of an array.
+    * The sliced part of an array its stored in new array
+    * So, slice Method return an new array without affecting original array.
+    * Slice Method accept two value first starting index and the second the length of the index to be cut out.
+
+    example:
+
+        var arr = [10,20,30,40,50];
+        var sliceArray = arr.splice(1,3);
+
+
+=>Splice 
+
+    * Splice Method is an array Method which is used to delete or add elements in th array.
+    * It affect the original array.
+    * Splice Method accept three argument first stating index second number of index to be affected third argument is optional
+      argument which is used to add new element.
+
+    example:
+
+        arr.splice(3,2,'new element');
+
+
+=>Every
+
+    * Every Method is an array Method which accept an callback function as an argument.
+    * That callback function accept three argument of its own first argument is the current element second argument is current index value
+      third argument is current array.
+    * Every Method is used to check a condition on every element and return an boolean value.
+    * If every element of that array return true then every return output as true otherwise if any of the element return false 
+    the every Method false.
+
+    example:
+
+        var arr = [1,2,3,4,5,6,7,8];
+        console.log(arr.every((element, index, arr)=>{
+            return element>5;
+        }))
+    
+
+=>Some
+
+    * Some is an array Method which accept an callback function as argument.
+    * The callback function accept three argument of its own first argument is the current element second argument is current index value
+      third argument is current array.
+    * It is used to check condition on every element if any of the element return true the some Method will return output as true 
+      otherwise if all the element return false then some method will return output as false.
+
+    example:
+
+        var arr = [1,2,3,4,5,6,7,8];
+        console.log(arr.some((element, index, arr)=>{
+            return element>5;
+        }))
+
+
+=>forEach
+
+    * forEach is an array method which accept an callback function as its argument.
+    * That callback function accept one argument of its own.
+    * It iterate to every element of an array and print the value individually.
+
+    example:
+        
+        const arr = [1,2,3,4,5,6,7,8,9];
+        arr.forEach(ele=>console.log(ele));
+
+
+=>Filter 
+
+    * Filter method is an array method which accept callback function as it argument.
+    * That callback function accept three argument of its own first current element and second current index and current array.
+    * Filter method is used to filter out the array according to the condition.
+    * If any element return true then that element is filter out and stored in the new array.
+    * It doesn't affect the original array.
+    * It return new array.
+
+    example:
+
+        const arr = [1,2,3,4,5,6,7,8,9];
+        const newFilter = arr.Filter((element, index, arr)=>{
+            return element%2==0;
+        });
+
+
+=>Map
+
+    * Map method is an array method which accept callback function as it argument.
+    * That callback function accept three argument of its own first current element and second current index and current array.
+    * Map method is used to Map out the array according to the condition.
+    * Map method iterate to every element and according to the requirement it update the element and return an updated new array.
+
+    example:
+
+        const arr = [1,2,3,4,5,6,7,8,9];
+        const newMapedArray = arr.Map((element, index, arr)=>{
+            return element + 5;
+        });
+
+
+=>Reduce
+
+    * Reduce method is an array method which accept callback function as it argument.
+    * That callback function accept four argument of its own first accumulator (current value) 
+      and second updated value and current index and four current array.
+    * Reduce method is used to intercalculate and return an single value.
+    * It will iterate to every element and calculate it with the updated value.
+    * Map method iterate to every element and according to the requirement it update the element and return an updated new array.
+    * The current index and current array are optional.
+
+    example:
+
+        const arr = [1,2,3,4,5,6,7,8,9];
+        const newReduceArray = arr.Reduce((accumulator, updatedValue, index, arr)=>{
+            return  accumulator + updatedValue;
+        });
+
+
+=>Objects
+
+    * Objects are nothing but the real time entities.
+    * Objects consist of states and behaviour.
+    * Objects are storing the properties in the key value pair.
+    * There are different way to create Objects.
+        
+        => Literal way
+        => Object constructor
+        => Function constructor
+        => Object.create()
+
+        * Literal way
+
+            const person = {};
+            person.name = 'nirmal';
+            person.age = 23;
+            person.degree = 'MCA';
+            console.log(person);
+
+            const user = {
+                Email:'rockerrock223@gmail.com',
+                password:'qwerty@123455'
+            }
+        
+        * Object constructor
+
+        * Function constructor
+
+        * Object.create()
+
+
