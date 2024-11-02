@@ -9,4 +9,4 @@ var total = arr.reduce((total, element, index, arr)=>{
 console.log(total);
 
 
-// it is used to calaculate the 
+// it is used to calculate the existing sum of an array
