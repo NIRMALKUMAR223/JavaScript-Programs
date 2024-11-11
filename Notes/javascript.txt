@@ -521,3 +521,183 @@ console.log('bye bye');
         * Object.create()
 
 
+=> Dom 
+
+    * DOM stands for document object model.
+    * Every time we create html document for that document one tree like structure is getting created in the browser.
+    * All the elements of html its stored in that structure.
+    * In javascript Using Dom we can manipulate the html elements.
+    * we can change the content of the element, css properties of the element. 
+    * we can also add and remove the html element as well as the css properties.
+    * we can add behaviour or event in an element.
+
+=> Dom structure 
+
+                            ________
+                            | HTML |
+                               |
+                --------------------------------
+                |                               |
+            _________                       __________
+            | HEAD  |                       |  BODY  |
+                |                               |
+      ---------------------            --------------------------      
+      |                   |             |                      |         
+    ________           _________    _______                ___________
+    | META |           | TITLE |    |  H1 |                |  span   |
+
+
+    * In the browser Dom element are stored as nodes        
+    * In javascript if we make any change in dom element then entire dom will updated.
+
+=> Dom properties
+
+    => Document
+
+        * document is an predefined object in javascript where all the dom properties and method are stored 
+
+    => textContent
+
+        * If we want to manupulate the text of an element then we use textContent.
+        * textContent stores only the raw text. 
+        * It all so stores the hidden text.
+        * It doesn't store the style properties.
+
+        example :
+
+            <h1 id='name'> name </h1>
+            
+            js code
+
+                let ele = document.getElementById('name');
+                ele.textContent = 'Nirmal'; 
+
+    => innerText
+
+        * innerText is use to manipulate the textContent of an element.
+        * It also stores the raw textContent.
+        * It doesn't store the hidden content.
+        * It doesn't the style of an element.
+        
+        example :
+
+            <h1 id='name'> name </h1>
+            
+            js code
+
+                let ele = document.getElementById('name');
+                ele.innerText = 'Nirmal'; 
+
+    => innerHtml
+    
+        * It is used to manipulate the element.
+        * Along with the textContent we can create child element also.
+        * It used display the context according to the markup.
+        * It stores the style property also.
+                
+        example :
+
+            <h1 id='name'> name </h1>
+            
+            js code
+
+                let ele = document.getElementById('name');
+                ele.innerHtml = '<span> Nirmal </span>'; 
+
+=> Selector 
+
+    * getElementById
+    * getElementByClassName
+    * getElementByTagName
+    * querySelector
+    * querySelectorAll
+
+    => getElementById
+
+        * To target the element we use getElementById method.
+        * It is avaliable inside the document object.
+        
+        example: 
+
+            // document.getElementById('idName');
+            
+            <h1 id = "name"> Hi </h1> 
+            var targetElement = document.getElementById('name');
+            targetElement.textContent = 'hello world';
+        
+    => getElementByClassName
+
+        * If we want to target the element using class name the we use getElementByClassName method.
+        * It return an HTML collection in the form of array list.
+        * That array list will be in the form of key and value pairs, where keys are index value and values are the element.
+        
+        example: 
+
+            // document.getElementByClassName('className');
+            
+            <p class = "items"> 1 </p> 
+            <p class = "items"> 2 </p> 
+            <p class = "items"> 3 </p> 
+           
+            var targetElement = document.getElementByClassName('items');
+            for (let i = 0; i < targetElement.length; i++){
+                item[i].innerHtml = 'Hi Good Morning';
+            }
+    
+    => getElementByTagName
+
+        * If we want to target the element using Tag name the we use getElementByTagName method.
+        * It return an HTML collection in the form of array list.
+        * That array list will be in the form of key and value pairs, where keys are index value and values are the element.
+        
+        example: 
+
+            // document.getElementByTagName('tagName');
+            
+            <h1> 1 </h1> 
+            <h1> 2 </h1> 
+            <h1> 3 </h1> 
+           
+            var targetElement = document.getElementByTagName('h1');
+            for (let i = 0; i < targetElement.length; i++){
+                item[i].innerHtml = 'Welcome';
+            }
+    
+    => querySelector
+
+        * QuerySelector is used to target element using id, class, tag. 
+        * It will target the first element amoung the all.
+        
+        example: 
+
+            // document.querySelector('#id (or) .class (or) tag');
+            
+            <h1> 1 </h1> 
+            <h1> 2 </h1> 
+            <h1> 3 </h1> 
+           
+            var targetElement = document.querySelector('h1'); // querySelector it will affect one the first element 
+            for (let i = 0; i < targetElement.length; i++){
+                item[i].innerHtml = 'Welcome';
+            }
+
+    => querySelectorAll
+
+        * If we want to target element using id, class, tag. 
+        * It will target all the element for the respective css Selector.
+        * It return an node list in array format.
+        * It stores the all the element within  the node list.
+        
+        example: 
+
+            // document.querySelectorAll('#id (or) .class (or) tag');
+            
+            <h1> 1 </h1> 
+            <h1> 2 </h1> 
+            <h1> 3 </h1> 
+           
+            var targetElement = document.querySelectorAll('h1'); // querySelectorAll it will affect all the element present in the node list
+            for (let i = 0; i < targetElement.length; i++){
+                item[i].innerHtml = 'Welcome';
+            }
+    
