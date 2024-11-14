@@ -700,4 +700,29 @@ console.log('bye bye');
             for (let i = 0; i < targetElement.length; i++){
                 item[i].innerHtml = 'Welcome';
             }
-    
+
+* How to create html element in javascript ?
+
+    createElement method:
+
+        * createElement is a dom method which is used to create an element in javascript.
+        * we just have to give the tag name as its argument.
+
+        example: 
+
+            // document.createElement('tagName');
+
+            var divTag = document.createElement('div');
+
+    appendChild method:
+
+        * The element which is created by createElement method is added to a parent element in html using appendChild method.
+        * It is manitory to have the parent element in order the append the child element.
+
+        example: 
+
+            // document.appendChild('tagName');
+
+            var divTag = document.createElement('div');
+            var heading = document.createElement('h1');
+            divTag.appendChild(heading);
