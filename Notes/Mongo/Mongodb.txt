@@ -30,98 +30,109 @@ volume of unstructured and semi-structed data.
 
 
 
-Nosql database are generally calssified into four main categories:
+Nosql database are generally classified into four main categories:
 
 Document Database:
-    A document database stores data in json, bson, or XML document. 
-    Document in the database can be nested.
-    Document database are mongo db, apache, couch db.
+
+    * A document database stores data in json, bson, or XML document. 
+    * Document in the database can be nested.
+    * Document database are mongo db, apache, couch db.
 
 Key-value stores:
-    This is the  simplest type of Nosql database . 
-    Every element stored in key value pair consisting of an attributes name ('key') and value.
-    key-value database are amazon, redis, memecached, dinamodb.
+
+    * This is the simplest type of Nosql database . 
+    * Every element stored in key value pair consisting of an attributes name ('key') and value.
+    * key-value database are amazon, redis, memecached, dinamodb.
 
 column-family store / wide-column store:
-    while an RDBMS stores data in row and reads it row and reads it row by row, 
-    column-oriented database are organized as a set of columns.
-    wide-column database are cassandra, H-base.
+
+    * while an RDBMS stores data in row and reads it row and reads it row by row, 
+    * column-oriented database are organized as a set of columns.
+    * wide-column database are cassandra, H-base.
 
 Graph database:
-    A Graph database focuses on the relationship between data element . 
-    Each element is contained as a node. the connections between element in the database are called links or relationship. 
-    Graph database are Neo4j.
+
+    * A Graph database focuses on the relationship between data element . 
+    * Each element is contained as a node. the connections between element in the database are called links or relationship. 
+    * Graph database are Neo4j.
 
 
 ACID properties in DBMS
 
 Atomicity:
-    The entire transaction take place at once or doesn't happen at all.
+
+    * The entire transaction take place at once or doesn't happen at all.
 
 Consistency:
-    The database must be consistent before and after the transaction.
+
+    * The database must be consistent before and after the transaction.
 
 Isolation:
-    Multiple transaction occur independently without interference.
+
+    * Multiple transaction occur independently without interference.
 
 Durability:
-    The changes of a successful transaction occur even is the system failure occur.
+
+    * The changes of a successful transaction occur even is the system failure occur.
 
 
 what is json ? 
-    JSON stands for javascript object notation.
-    JSON is a open source data-interchange format.
-    JSON is lightweight and self-describing.
-    JSON oriented from javascript.
-    JSON is easy to write.
-    JSON is language independent.
-    JSON supports data structures such as array and object.
+
+    * JSON stands for javascript object notation.
+    * JSON is a open source data-interchange format.
+    * JSON is lightweight and self-describing.
+    * JSON oriented from javascript.
+    * JSON is easy to write.
+    * JSON is language independent.
+    * JSON supports data structures such as array and object.
 
 what is bson ?
-    BSON stands for binary JSON.
-    It is almost similar to JSON.
-    It has limited datatype.
-    Data stored in the form of binary
-    It is more faster than JSON.
-    BSON can be understand only by machine where JSON can be understand only by humans.
+
+    * BSON stands for binary JSON.
+    * It is almost similar to JSON.
+    * It has limited datatype.
+    * Data stored in the form of binary
+    * It is more faster than JSON.
+    * BSON can be understand only by machine where JSON can be understand only by humans.
 
 
 founders of mongodb
-
-eliot horrowitz
-dweight marriman
-kevin rayan
+ 
+    * eliot horrowitz
+    * dweight marriman
+    * kevin rayan
 
 MongoDB:
 
-    mongodb was introduced in the year of 2007 
-    The first version released in the year 2009 mongodb 1.0
-    It is cross platform, document based, open source, Distributed database
-    It was written in c++
-    It supports horizontal scaling, flexible, indexing, sharding, replica set. 
-    If we want to store huge data mongodb is a best choice.
+    * mongodb was introduced in the year of 2007 
+    * The first version released in the year 2009 mongodb 1.0
+    * It is cross platform, document based, open source, Distributed database
+    * It was written in c++
+    * It supports horizontal scaling, flexible, indexing, sharding, replica set. 
+    * If we want to store huge data mongodb is a best choice.
 
 collection:
 
-    Collection is group of mongodb document.
-    It is the equivalent of an RDBMS table.
-    A collection exists within database.
-    Collection do not have a particular schema.
-    Document within a collection can have different fields.
+    * Collection is group of mongodb document.
+    * It is the equivalent of an RDBMS table.
+    * A collection exists within database.
+    * Collection do not have a particular schema.
+    * Document within a collection can have different fields.
 
 Document: 
 
-    A document is set of key-value pair.
-    Representation of document is curly braces {}.
-    Document have dynamic schema.
-    Common fields in the document may hold different type of data.
-    Maximum size of each document is 16mb.
+    * A document is set of key-value pair.
+    * Representation of document is curly braces {}.
+    * Document have dynamic schema.
+    * Common fields in the document may hold different type of data.
+    * Maximum size of each document is 16mb.
 
 Capped Collection:
 
-    When we want to restict the size of capped collection the we go for capped collection.
-    Fixed size collection are called capped collection in mongodb.
-    While creating a collection user must specify the collection's max size in bytes and max number of document to store.
+    * When we want to restict the size of capped collection the we go for capped collection.
+    * Fixed size collection are called capped collection in mongodb. 
+    * While creating a collection user must specify the collection's max size in 
+      bytes and max number of document to store.
 
     example:
 
@@ -133,9 +144,10 @@ Capped Collection:
 
 Objectid:
 
-    objectid will be generated by default at the time of field insertion.
-    objectid is unique and it acts like a primary key for particular field.
-    It is a 12 byte BSON type hexadecimal string.
+    * objectid will be generated by default at the time of field insertion.
+    * objectid is unique and it acts like a primary key for particular field.
+    * It is a 12 byte BSON type hexadecimal string.
+    
 
     example:
 
@@ -148,10 +160,10 @@ To read the document in mongodb we have 2 methods
 
 find()
 
-    It is a primary method for retrieving documents form a collection in mongodb.
-    This method accepts a query object. if left empty all the document will be returned.
-    If no matching document is found, it return empty space.
-    If no data present in collection it will return empty space.
+    * It is a primary method for retrieving documents form a collection in mongodb.
+    * This method accepts a query object. if left empty all the document will be returned.
+    * If no matching document is found, it return empty space.
+    * If no data present in collection it will return empty space.
 
     syntax: db.collection.find({query},{projection}) 
 
@@ -168,10 +180,10 @@ find()
 
 findOne()
 
-    To select only one document we can use the findOne() method.
-    This method accepts a query object. if left empty, it will return the first document it find in the collection.
-    It return only one document , even if Multiple document match the criteria.
-    If no matching document is found it will return null.
+    * To select only one document we can use the findOne() method.
+    * This method accepts a query object. if left empty, it will return the first document it find in the collection.
+    * It return only one document , even if Multiple document match the criteria.
+    * If no matching document is found it will return null.
 
     syntax: db.collection.findOne({query},{projection}) 
 
@@ -222,15 +234,15 @@ Query Operator:
 
     $in : matches the values specified in an array. 
 
-        syntax : db.emp.find({age : {$in: [<value>, <value>, <value>, <value>]}})
+    syntax : db.emp.find({age : {$in: [<value>, <value>, <value>, <value>]}})
 
-            db.emp.find({sal : {$in : [5000, 1500]}})
+        db.emp.find({sal : {$in : [5000, 1500]}})
 
     $nin : matches none of the values specified in an array.
 
-        syntax : db.emp.find({age : {$nin: [<value>, <value>, <value>, <value>]}})
+    syntax : db.emp.find({age : {$nin: [<value>, <value>, <value>, <value>]}})
 
-            db.emp.find({sal : {$in : [5000, 1500]}})
+        db.emp.find({sal : {$in : [5000, 1500]}})
 
 Logical operator:
 
