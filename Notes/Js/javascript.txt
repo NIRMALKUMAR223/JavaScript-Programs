@@ -2,6 +2,7 @@ operator
 -----------> symbol which is used to perform some task
 
 ---> arathimetic operator 
+
         +,-,%,/,*,++,--
 
 ---> relation operator
@@ -488,6 +489,21 @@ console.log('bye bye');
             return  accumulator + updatedValue;
         });
 
+=> String 
+
+    * String is a collection of character
+    * we can create a string by using double quotes, single quotes or backtick.
+    * In javascript string can be primitive as well as non-primitive datatype.
+    * If we create the string directly by giving the value that is considered as a primitive String.
+    * If we use new keyword along with string class constructor then that is consider as a non primitive string
+
+way of creating string in javascript
+
+    Literal way
+    new keyword
+
+
+
 
 =>Objects
 
@@ -726,3 +742,79 @@ console.log('bye bye');
             var divTag = document.createElement('div');
             var heading = document.createElement('h1');
             divTag.appendChild(heading);
+
+Promise:
+
+    * Promise is an ES6 feature.
+    * Promises are use for asynronous execution of javascript program.
+    * Promise having three state 
+        pending state
+        fullfilled state
+        rejected state
+
+    pending state:
+        * when the promise is not completed means nither it is fullfilled nor rejected.
+
+    fullfilled state:
+        * when the promise is succesfully completed the promise is in fullfilled state.
+
+    rejected state:
+        * when the promise is failed to execute that promise is rejected state.
+        * along with the promises we use then and catch block combination.
+
+then block:
+
+    * when the promise is in fullfilled state at that time then block is executed.
+    * then accepts the callback with one argument as the response message.
+
+catch block:
+
+    * when the promise is in rejected state at that time catch block is executed.
+    * catch accepts a callback with accept one argument where the rejection method is store.
+
+finally:
+
+    * if we want some universal block of code which must execute wither in the fullfilled or in the rejected state the we use finally block.
+    * finally block is also accept an callback function where the universal code can be return.
+
+    example:
+
+        var score = 3;
+        var game = new Promise((res,rej)=>{
+            if (score===3){
+                res('you win');
+            }
+            else{
+                rej('you lose);
+            }
+        })
+
+        game.then(res=>{
+            console.log(res);
+        }).catch(err=>{
+            console.log(err);
+        }).finally(()=>{
+            console.log('game end');
+        })
+
+fetch api:
+
+    * In javascript if we want to fetch the data from the api we have various ways.
+    * There is an method called fetch method which is used to fetch the data from the api asynronously.
+    * fetch method return an promise.
+    * fetch method accept the link of the api as the argument.
+    * fetch api also accept one optional argument as an object in order to add additional methodology.
+    * fetch api is always fullfilled, it will be rejected only is connection is intretrupted or the api it self have some fault.
+ 
+    example:
+
+        var data = fetch('url');
+        data.then(res=>{
+            res.json().then((datas)=>{
+                console.log(datas.data);
+            })
+        }).catch(err=>{
+            console.log(err);
+        }).finally(()=>{
+            console.log('game end');
+        })
