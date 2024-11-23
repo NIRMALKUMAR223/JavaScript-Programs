@@ -306,4 +306,34 @@ Evaluation operators:
         * You can compare two fields in the same document.
 
 
-        
+Data Modeling
+
+    Most important topic in database
+
+        Data Modeling is an process of defining how data is stored and what relationships exist between different entites in 
+        our data.
+        It aim to visually represent the relationship between different entities in data.
+
+    Advantage:
+
+        Easy to Manage data
+        Less Memory
+        Easily we can query on data
+        Less Cost
+
+    Types of data model:
+
+        Embeded data model:
+
+            It capture relationship between data by storing related data in a single document structure 
+            It is a single structure
+            It is also called de-normalized model
+            It can store only 16 mb document
+            It leads duplication of data
+
+        Reference data model
+
+            Reference store relationship between data by including links called Reference , from one document to another document
+            This is most widely used data Modeling
+            Here we need more than one document to store data either in same collection or different collection
+            
