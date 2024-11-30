@@ -336,3 +336,169 @@ Data Modeling
             Reference store relationship between data by including links called Reference , from one document to another document
             This is most widely used data Modeling
             Here we need more than one document to store data either in same collection or different collection
+
+Evaluation Operators:
+
+--> It returns data based on evaluations of either individual fields or the entire collection's documents
+
+$expr:
+
+>> The $expr operator is used to allow the use of aggregation expressions within query operations
+
+>> You can compare two fields in the same documents
+
+>> $expr can contain expressions thar compare fields from the document
+
+Syntax: {$expr:{<expressions>}}
+
+Ex: db.emp.find({$expr:{$gt:{"$comm","$sal"}}})
+
+$regex:
+
+>> Provides regular expression capabilities for pattern matching strings in queries
+
+Syntax: {<field>:{$regex:/pattern/}}
+
+Ex: db.emp.find({ename:{$regex:/s/}})
+
+Array Operators:
+
+--> It can return data based on array condition
+
+$all:
+
+>> The $all operator selects the documents where the value of a field is an array that contains all the specified elements
+
+Syntax:
+
+{<field>:{$all:{<value1>,<value2>,...}}}
+
+Ex:  db.emp.find({skills:{$all:{"Java","MongoDB","RDBMS"}}})
+
+$elemMath:
+
+--> The $elemMatch operator match documents that contain an array field with at least one element that matches all the specified query criteria
+
+Syntax: {<field>:{$elemMatch:{<query1>,<query2>,....}}}
+
+Ex: db.emp.find({grades:{$elemMatch:{score:90,rank:'A'}}})
+
+db.emp.find({skills:{$elemMatch:{$in:{"Java","MongoDB","RDBMS"}}}})
+
+$size:
+
+--> The $size operator matches any array with the number of elements specified by the argument
+
+Syntax: {field:{$size:Number}}
+
+Ex: db.emp.find({skills:{$size:3}})
+
+Projection Operators:
+
+--> Projection Operators specify the field returned by an operation
+
+$:
+
+>> The positional $ operator limits the contents of an <array> to return the first element that matches the query condition on the array
+
+Syntax: db.collection.find({<array>:<condition>...},{"<array>.$":1})
+
+        db.collection.find({<array.field>:<condition>...},{"<array>.$":1})
+
+Ex:  db.emp.find({skills:"Java"},{"skills.$":1})
+
+     db.emp.find( (grades: ($elemMatch: ($cort 80), [rank: 'B']}], ["grades.S":1})
+
+
+Arithemetic operations
+
+    it is used to perform Arithemetic operation on number
+
+    $add :
+
+        It is used to add the two or more numbers and date also.
+
+        syntax : {$add : [<expression1>, <expression2>,... ]}
+
+        example : WAQTD total sal ( sal + comm ) of all employees along with name.
+
+            db.emp.find({},{_id:0, ename:1, total_sal: {$add:['$sal','$comm']}})
+
+        note : in case of comm is null 
+
+            db.emp.find({},{_id:0, ename:1, total_sal: {$add:[ {$ifNull:['$comm',0]},'$sal']}})
+
+                                        or
+
+            db.emp.find({},{_id:0, ename:1, total_sal: {$sum:['$sal','$comm']}})
+
+    $subtract :
+
+        It is operator is used to subtract two numbers or date and return the difference.
+
+            1. If the argument is the number the result will come in a number.
+            2. If the argument is the two dates the result will come in milliseconds.
+            3. If the argument is date and number in milliseconds , the result will come in date.
+
+        syntax : {$subtract: [<expression1>,<expression2>]}
+
+        example : WAQTD ename with 100 penalty from each employee salary.
+
+            db.emp.find({},{_id:0, sal_aft_penalty: {$subtract :['$sal',100]}})
+            
+    $multiply :
+
+        It is operator is used to multiply two or more number and return the result.
+
+        syntax : {$multiply: [<expression1>,<expression2>,...]}
+
+        example : WAQTD employee name along with their annul sal.
+
+            db.emp.find({},{_id:0, sal_aft_penalty: {$multiply :['$sal',12]}})
+            
+        example : WAQTD employee name along with their annul sal with 20% hike.
+
+            db.emp.find({},{_id:0, sal_aft_hike: {$multiply :[{$multiply : ['$sal',12]}, 1.2]}})
+            
+        example : WAQTD employee name along with their annul sal detection of 30%.
+
+            db.emp.find({},{_id:0, sal_aft_hike: {$multiply :[{$multiply:['$sal',12]},0.7]}})
+
+
+    $divide :
+
+        It is also used to divide one number by another and return the result.
+
+        syntax : {$divide: [<expression1>,<expression2>,...]}
+
+        example : WAQTD employee name along with their daily salary.
+
+            db.emp.find({},{_id:0, daily: {$divide :['$sal',30]}})
+
+        example : WAQTD employee name along with half-month salary.
+
+            db.emp.find({},{_id:0, half_sal: {$divide :['$sal',2]}})
+
+    $mod :
+
+        The $mod operator is used to divide one number by another number and return the remainder
+        In other words the first number is the dividend and the second number is the divisor
+
+        syntax : {$mod: [<expression1>,<expression2>,...]}
+
+        example : WAQTD employee ename and salary those who re earning even salary
+
+            db.emp.find({sal:{$mod:[2,0]}},{_id:0,ename:1,sal:1})
+        
+        example : WAQTD employee ename and salary those who re earning odd salary
+
+            db.emp.find({sal:{$mod:[2,1]}},{_id:0,ename:1,sal:1})
+
+        example : WAQTD document of employee where their empno manager number deptment number and salary is even
+
+            db.emp.find({$and: [
+                {empno: {$mod:[2,0]}},
+                {mgr: {$mod:[2,0]}},
+                {deptno: {$mod:[2,0]}},
+                {sal: {$mod:[2,0]}},                
+            ]}, {_id:0, ename:1,mgr:1,deptno:1, sal:1}) 
