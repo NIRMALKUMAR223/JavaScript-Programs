@@ -502,3 +502,4 @@ Arithemetic operations
                 {deptno: {$mod:[2,0]}},
                 {sal: {$mod:[2,0]}},                
             ]}, {_id:0, ename:1,mgr:1,deptno:1, sal:1}) 
+            
