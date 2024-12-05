@@ -306,37 +306,6 @@ Evaluation operators:
         * You can compare two fields in the same document.
 
 
-Data Modeling
-
-    Most important topic in database
-
-        Data Modeling is an process of defining how data is stored and what relationships exist between different entites in 
-        our data.
-        It aim to visually represent the relationship between different entities in data.
-
-    Advantage:
-
-        Easy to Manage data
-        Less Memory
-        Easily we can query on data
-        Less Cost
-
-    Types of data model:
-
-        Embeded data model:
-
-            It capture relationship between data by storing related data in a single document structure 
-            It is a single structure
-            It is also called de-normalized model
-            It can store only 16 mb document
-            It leads duplication of data
-
-        Reference data model
-
-            Reference store relationship between data by including links called Reference , from one document to another document
-            This is most widely used data Modeling
-            Here we need more than one document to store data either in same collection or different collection
-
 Evaluation Operators:
 
 --> It returns data based on evaluations of either individual fields or the entire collection's documents
@@ -502,6 +471,305 @@ Arithemetic operations
                 {deptno: {$mod:[2,0]}},
                 {sal: {$mod:[2,0]}},                
             ]}, {_id:0, ename:1,mgr:1,deptno:1, sal:1}) 
-            
 
+Data Modeling
+
+    Most important topic in database
+
+        Data Modeling is an process of defining how data is stored and what relationships exist between different entites in 
+        our data.
+        It aim to visually represent the relationship between different entities in data.
+
+    Advantage:
+
+        Easy to Manage data
+        Less Memory
+        Easily we can query on data
+        Less Cost
+
+    Types of data model:
+
+        Embeded data model:
+
+            It capture relationship between data by storing related data in a single document structure 
+            It is a single structure
+            It is also called de-normalized model
+            It can store only 16 mb document
+            It leads duplication of data
+
+        Reference data model
+
+            Reference store relationship between data by including links called Reference , from one document to another document
+            This is most widely used data Modeling
+            Here we need more than one document to store data either in same collection or different collection
+
+    Relationships:
+
+        A relationship is an connection between two documents.
+        Relationships allow you to reference and query related documents in read and write operations.
+        MongoDB relationship are the Representation of how the multiple document are logically connected to each other in mongodb.
+        The Embeded and reference method are two ways to create such relationship.
+
+        Types of relationship 
+
+        * one to one relationship using embeded data model
             
+            db.student.insertOne(
+                                   {
+                                   name:'nirmal',
+                                   stdId:101,
+                                   college:'kit-cbe',
+                                   address:{
+                                       'd/no': 1,
+                                       street:'btm',
+                                       city:'blr',
+                                       pincode:560076
+                                   }
+                                   }
+                               );
+
+        * one to one relationship using reference data model
+            
+            db.student.insertOne(
+                                   {
+                                   name:'nirmal',
+                                   stdId:101,
+                                   college:'kit-cbe',
+                                    }
+            )
+            
+            db.studentAddress(
+                {
+                    address:{
+                               'd/no': 1,
+                               street:'btm',
+                               city:'blr',
+                               pincode:560076
+                            }
+                }
+            )
+
+            db.student.updateOne(
+                {
+                    name:'nirmal'
+                },
+                {
+                    $set:{
+                        address:ObjectId('17862372g32y3b823098')
+                    }
+                }
+            )
+
+            db.student.aggregate([
+                {
+                    $lookup:{
+                        from:'studentAddress',
+                        localField:'address',
+                        forginField:'_id',
+                        as:'address'
+                    }
+                }
+            ])
+
+        * one to many relationship using embeded
+
+            db.student.insertOne({
+                name:'jack',
+                stdId:456,
+                college:'his college',
+                atmDetails:[
+                    {
+                        bankName:'union',
+                        cardNo: 123434,
+                        cvv:123,
+                        expDate:'12/36'
+                   },
+                    {
+                        bankName:'sbi',
+                        cardNo: 432635,
+                        cvv:874,
+                        expDate:'12/26'
+                   },
+                    {
+                        bankName:'union',
+                        cardNo: 34343,
+                        cvv:123,
+                        expDate:'12/36'
+                   }
+                ]
+            });
+
+        one to many relationship using reference model
+
+            db.student.insertOne({
+                name:'jack',
+                stdId:456,
+                college:'his college',
+            });
+
+            db.studentAtm.insertMany(
+                [
+                    {
+                        bankName:'union',
+                        cardNo: 123434,
+                        cvv:123,
+                        expDate:'12/36'
+                   },
+                    {
+                        bankName:'sbi',
+                        cardNo: 432635,
+                        cvv:874,
+                        expDate:'12/26'
+                   },
+                    {
+                        bankName:'union',
+                        cardNo: 34343,
+                        cvv:123,
+                        expDate:'12/36'
+                   }
+                ]
+            )
+
+            db.student1.updateMany(
+                {name:'jack'},
+                {
+                    $set:{atmDetails:[ObjectId(''),ObjectId(''),ObjectId('')]}
+                }
+            )
+
+            db.student1.aggregate([
+                {
+                    $lookup:{
+                        from:'studentAtm',
+                        localField:'atmDetails',
+                        foreginField:'_id',
+                        as:'atmDetails'
+                    }
+                }
+            ])
+
+    Many to Many relationship 
+
+        db.courses.insertMany([
+            {
+                courseName:'node js',
+                duration:'2 month'
+            },
+            {
+                courseName:'express js',
+                duration:'2 month'
+            },
+            {
+                courseName:'react js',
+                duration:'2 month'
+            }
+        ])
+
+        db.developers.insertMany([            
+            {
+                developerName:'jack',
+                salary:10000
+            },{
+                developerName:'jacky',
+                salary:10000
+            },{
+                developerName:'jeni',
+                salary:10000
+            },
+            ])
+
+        // developer id here in trainee as a reference 
+        
+        db.courses.updateOne(
+            {courseName:'node js'},
+            {$set:{trainee:[ObjectId(''),ObjectId('') ]}}
+        )
+
+        // courses id here in courses as reference
+        
+        db.developers.updateOne(
+            {developerName:'jack;},
+            {$set:{courses: [ObjectId(''), ObjectId(''), ObjectId('')]}}
+        )
+
+        db.courses.aggregate([
+                {
+                    $lookup:{
+                        from : 'developers',
+                        localField : 'trainee',
+                        foreignField : '_id',
+                        as : 'trainee'
+                    }
+                }
+            ])
+
+        db.developers.aggregate([
+            {
+                $lookup:{
+                    from : 'courses',
+                    localField : 'courses',
+                    foreignField : '_id',
+                    as : ''
+                }
+            }
+        ])
+
+    Schema : 
+
+        * A schema is a JSON object that defines the structure and contents of your data.
+        * It allow you to validate the structure of data.
+        * It is used to specify validation rules for a document in a human readable format.
+
+        Note : we can't create schema for admin, local, config database.
+
+        Schema validation :
+
+            * Schema validation lets you create validation rules for your fields such as allowed datatypes and value ranges.
+            * MongoDB uses a flexible schema model, which means the document in an collection do not need to have the same fields or data
+              types by default.
+            
+            How to create a schema ?
+
+            db.createCollection('users',{
+                validator:{
+                    $jsonSchema :{
+                        bsonType :'object',
+                        required : ['username','password'],
+                        properties : {
+                            username:{
+                                bsonType :'string',
+                                description : 'must be string and its required'
+                            },
+                            password : {
+                                bsonType :'string',
+                                description : 'must be string and 8 char is required'
+                            }
+                        }
+                    }
+                }
+            })
+
+            db.createCollection('fruits', {
+                validator:{
+                    $jsonSchema:{
+                        bsonType: 'object',
+                        required :['name','price','quantity'],
+                        properties:{
+                            name:{
+                                bsonType :'string',
+                                description: 'name is mandatory'
+                            },
+                            price:{
+                                bsonType : 'double',
+                                description:'price is mandatory'
+                            },
+                            quantity:{
+                                bsonType: 'number',
+                                description:'quantity is mandatory'
+                            }
+                        }
+                    }
+                }
+            })
+
+
