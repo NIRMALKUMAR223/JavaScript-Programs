@@ -772,4 +772,83 @@ Data Modeling
                 }
             })
 
+            db.createCollection('phone',{
+                validator:{
+                    $jsonSchema : {
+                        bsonType : 'object',
+                        required : ['brand','model','price','manufacturing'],
+                        properties : {
+                            brand : {
+                                bsonType : 'string',
+                                description : 'brand is string data type'
+                            },
+                            model : {
+                                bsonType : 'string',
+                                description : 'model is string data type'
+                            },
+                            price : {
+                                bsonType : 'double',
+                                description : 'price in double data type'
+                            },
+                            manufacturing : {
+                                bsonType : 'string',
+                                description : 'manufacturing in string data type'
+                            }
+                        }
+                    }
+                }
+            })
 
+        // arrays and object  
+
+            arrays : 
+
+            db.createCollection('fruits',{
+                validator : {
+                    $jsonSchema : {
+                        bsonType : 'object',
+                        required : ['collection'],
+                        properties : {
+                            collection : {
+                                bsonType : 'array',
+                                items : {
+                                    bsonType : ['string', 'number', 'object', 'double'],
+                                    description : 'in array you can insert string, number, object, double datatype' 
+                                }
+                            }
+                        }
+                    }
+                }
+            })
+
+            object : 
+
+            db.createCollection('address',{
+                validator : {
+                    $jsonSchema : {
+                        bsonType : 'object',
+                        required : ['doorNo', 'street', 'city', 'pinCode'],
+                        properties : {
+                            doorNo : {
+                                bsonType : 'number',
+                                description : 'door number is number'
+                            },street : {
+                                bsonType : 'string',
+                                description : 'street number is number'
+                            },city : {
+                                bsonType : 'string',
+                                description : 'city number is number'
+                            },pinCode : {
+                                bsonType : 'number',
+                                description : 'door number is number'
+                            },
+                        }
+                    }
+                }
+            })
+
+        // can we give schema for existing document 
+            for that we have a command called  db.runCommand(collMod : collectionName,{})
+
+            * If any collection is created and some data is present.
+            * We can set schema later.
