@@ -300,9 +300,9 @@ Evaluation operators:
 
     Evaluation operator return data based on evaluations or either individual fields or the entire collection document.
 
-    $exper:
+    $expr:
 
-        * The $exper operator is used to allow the use of aggregation expression within query operations.
+        * The $expr operator is used to allow the use of aggregation expression within query operations.
         * You can compare two fields in the same document.
 
 
@@ -753,7 +753,8 @@ Data Modeling
                 validator:{
                     $jsonSchema:{
                         bsonType: 'object',
-                        required :['name','price','quantity'],
+                        required :['name','price','
+                        '],
                         properties:{
                             name:{
                                 bsonType :'string',
@@ -852,4 +853,206 @@ Data Modeling
 
             * If any collection is created and some data is present.
             * We can set schema later.
+
+Field update operator : atomic operator
+
+    $inc :
+
+        The $inc operator increment a field by a specified value.
+        Syntax :
+
+            {$inc : {<Fields>:<amount1>,<Fields>:<amount2>}}
+        The inc operator accepts positive and negative values.
+        If the fields does not exist $inc creates the field and sets the field to the specified value.
+        Use of the $inc operator on a field with a null value will generate an error.
+
+        example : 
+
+            db.emp.updateOne({},{$inc : {sal:200}})
+            db.emp.updateOne({},{$inc : {sal:null}})
+            db.emp.updateOne({},{$inc : {sal:1000}})
+
+    $min : 
+
+        The $min updates the value of the fields to a specified value, if the specified value is less than the current value of the field.
+        Syntax :
             
+            {$min : {<Field1>:<value>,<Field2>:<value>}}
+        If the field does not exist the $min operator sets the field in to the specified value.
+
+        example : 
+
+            db.emp.updateOne({},{$min : {sal:200}})
+            db.emp.updateOne({},{$min : {sal:null}})
+            db.emp.updateOne({},{$min : {sal:1000}})     
+
+    $max : 
+
+        It is opposite to min.
+        The $max operator updates the values of the fields to a specified value if the specified is greater than the current value of the field.
+        Syntax : 
+            {$max : {<fields>:<number1>,...}}
+
+    $mul : 
+
+        Multiply the value of a fields by a number.
+        To specify a $mul expression.
+        Syntax : 
+            {$mul : {<fields>:<number1>,...}}
+        The fields to update must contain a numeric value.
+        If the field does not exist in a document $mul create the fields and sets the value to zero of the same type as the multiplier.
+
+    $rename : 
+
+        The $rename operator updates the name of the fields 
+        Syntax : 
+            {$rename: {<fields>:<newName>,...}}
+        If the field to rename does not exist in document, $rename does nothing.
+    
+    $set : 
+
+        The $set operator replace the value of a field with the specified value.
+        Syntax : 
+            {$set: {<field>:<value>,...}}
+        If the Fields does not exist $set will add a new field with specified value.
+        If the condition matches then it will update the field if already exists.
+        If the condition matches but the field is not present then it will create a new field with specified value.
+        If the condition does not matches but if we are using {upsert:true} than it will create new document.
+
+    $unset :
+
+        The $unset operator deletes a particular fields.
+        Syntax :
+            {$unset:{<field>:'',...}}
+
+    $currentDate :
+
+        Syntax :
+            {$currentDate : {field:true}}
+                    OR
+            {$set : {<field>:new Date()}}
+                    OR
+            {$set : {$field: new ISODate()}}
+                    OR
+            {$currentDate : {<field>:{$type:'date}}} or {$type : 'timeStamp}
+
+        how to remove timeStamp from date ? 
+
+            db.emp.updateOne({},{$set: {field: new Date().toISOSString().split('T')[0]}})
+
+Array update operators:
+
+    $ : 
+
+        * The positional $ operator will update the first matched document only, although the next document is satsisfy the condition it won't
+          effect until the first document fails the condition.
+        
+        syntax : 
+
+            {'array.$':value}
+    
+    $[] : 
+
+        * The positional operator $[] indicate that the update operator should modify all element in the specified array fields.
+
+        syntax : 
+
+            {'updateOperator' : { 'array.$[]':value}}
+
+        * If any one document is satsisfy inside the array the it will update all the documents present in a array.
+
+    $push :
+
+        * The $push appends the specified value to array.
+
+        syntax : 
+
+            {$push:{<field>:<value1>,...}}
+
+        * If the fields is not an array the operation will fail If the fields is absent in the document to update, $push adds the array field with the value as its element.
+        * It will create multi-dimensional array.
+        * If we need to overcome this problem we have to use $each.
+
+    $each : 
+
+        * The $each modifier is avaliable for use with the $addToSet operator.
+        * It will insert only element inside array without creating any new array.
+         
+
+Aggregation : 
+
+    what is aggregation ?
+
+        It is a process of selecting data from a collection in mongodb.
+        It processes multiple document and returns computed result.
+        Aggregation operation process multiple document and return computed result.
+        You can use aggregate opeartion to 
+            Group value from multiple documents together
+            Perform operations on the grouped data to return a single result.
+            Analyze data change overtime
+
+                            $stages 
+            
+            collection => $match => $sort => $project => output
+
+        An aggregation pipeline consist of one or more stages that process documents
+        To perform aggregation must use aggregate() method
+        The aggregate method accepts array of value
+        It is alternative for find()
+
+        db.collection.aggregate([{stage1},{stage2},{stage3}],{options}) 
+
+    SQL to Aggregation mapping chart:
+
+        where => $match
+        group by => $group
+        having => $match
+        select => $project 
+        order by => $sort 
+        limit => $limit
+        sum() => $sum
+        count() => $sum , $count : {}
+        join => $lookup 
+
+    $match stage:
+
+        Filter the document to pass only the document that match the specificed conditions to the next pipline stage.
+
+        syntax : 
+        {$match : {<query>}}
+
+    $group stage: 
+
+        The $group it is used to group the documents.
+        whenever we use the $group it must be mandatory we need to use _id
+        we can use the $sum $avg $max $min and $count inside the $group stage
+        use the _id field in the $group stage to set the group key
+        $match will come before in an aggregation stage pipeline
+
+        syntax
+
+            {
+                $group:{
+                    _id : <expression>,
+                    <field1>: {<accumulator1>,<expression1>},
+                    ...
+                }
+            }
+
+        $sum  => sum of values
+        $avg => avg of values
+        $max => max of values
+        $min => min of values
+        $sum or $count => number of document present in an collection
+            $sum => col name => total values of a particular fields
+
+    {$group: 
+        _id:field,
+        aliasname: {$min : '$fieldname}
+        aliasname: {$min : '$fieldname}
+        aliasname: {$min : '$fieldname}
+        aliasname: {$min : '$fieldname}
+        aliasname: {$min : '$fieldname}
+        aliasname: {$min : '$fieldname}
+        aliasname: {$min : '$fieldname}
+    }
