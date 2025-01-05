@@ -1056,3 +1056,4 @@ Aggregation :
         aliasname: {$min : '$fieldname}
         aliasname: {$min : '$fieldname}
     }
+    {}
